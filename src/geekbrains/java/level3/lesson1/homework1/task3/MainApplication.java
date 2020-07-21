@@ -97,5 +97,25 @@ public class MainApplication {
         System.out.println(box1.getBoxArrayList().size());
         System.out.println(box2.getBoxArrayList().size());
         System.out.println();
+
+        //Тестируем метод compare класса Box
+        box1.putFruit(apple1);
+        box1.putFruit(apple2);
+        box2.putFruit(orange1);
+        box2.putFruit(orange2);
+        if ((box1.compare(box1) && box2.compare(box2)) && !box1.compare(box2)) {
+            System.out.println("Тест сравнения коробок пройден.");
+            box1.deleteAll();
+            box2.deleteAll();
+        } else {
+            System.err.println("Тест сравнения коробок не прошел.");
+            box1.deleteAll();
+            box2.deleteAll();
+        }
+        //Удостоверяемся что коробки были опустошены для следующего теста
+        System.out.println("Размер коробок после теста:");
+        System.out.println(box1.getBoxArrayList().size());
+        System.out.println(box2.getBoxArrayList().size());
+        System.out.println();
     }
 }

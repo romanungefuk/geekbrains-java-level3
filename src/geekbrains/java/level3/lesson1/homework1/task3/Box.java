@@ -38,16 +38,27 @@ public class Box {
 
     /**
      * Method calculate the weight of Box if the box is not empty
+     *
      * @return the weight of the box
      */
-    public float getWeight(){
+    public float getWeight() {
         float result = 0.0f;
-        if(!this.getBoxArrayList().isEmpty()){
-            for (Fruit fruit:
-            this.getBoxArrayList()) {
-                result+=fruit.getWeight();
+        if (!this.getBoxArrayList().isEmpty()) {
+            for (Fruit fruit :
+                    this.getBoxArrayList()) {
+                result += fruit.getWeight();
             }
         }
         return result;
+    }
+
+    /**
+     * Method to compare two Boxes
+     *
+     * @param box comparing box
+     * @return true if the weight of boxes are equal else false
+     */
+    public boolean compare(Box box) {
+        return (this.getWeight() == box.getWeight()) ? true : false;
     }
 }
