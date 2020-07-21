@@ -61,4 +61,22 @@ public class Box {
     public boolean compare(Box box) {
         return (this.getWeight() == box.getWeight()) ? true : false;
     }
+
+    /**
+     * Method for pouring over the fruits from one box to another box
+     *
+     * @param box pouring over box
+     * @return true if the box is poured over else false
+     */
+    public boolean pourOver(Box box) {
+        boolean result = false;
+        if (!this.getBoxArrayList().isEmpty() && (this.fruitType.equals(box.fruitType))) {
+            for (int i = 0; i < this.getBoxArrayList().size(); i++) {
+                box.putFruit(this.boxArrayList.get(i));
+            }
+            this.deleteAll();
+            result = true;
+        }
+        return result;
+    }
 }
