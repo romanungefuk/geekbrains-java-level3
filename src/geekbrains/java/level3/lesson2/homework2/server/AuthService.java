@@ -5,5 +5,7 @@ public interface AuthService {
 
     String getNickByLoginPass(String login, String pass);
 
+    void changeNick(String newNick, String oldNick);
+
     void stop();
 }

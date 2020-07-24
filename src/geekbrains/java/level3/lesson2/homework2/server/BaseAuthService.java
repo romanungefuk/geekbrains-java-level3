@@ -21,19 +21,30 @@ public class BaseAuthService implements AuthService {
     public String getNickByLoginPass(String login, String pass) {
         String result = null;
         try (Connection conn = DriverManager.getConnection("jdbc:sqlite:java-level3.db");
-             Statement stmt = conn.createStatement()){
+             Statement stmt = conn.createStatement()) {
             String sqlRead = "SELECT * FROM USERS";
             ResultSet rs = stmt.executeQuery(sqlRead);
             String md5password = DigestUtils.md5Hex(pass);
-            System.out.println("md5password: "+md5password);
             while (rs.next()) {
                 if (rs.getString("login").equals(login) && rs.getString("password").
-                        equals(md5password)){
-                    result = rs.getString("nick");}
+                        equals(md5password)) {
+                    result = rs.getString("nick");
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return result;
+    }
+
+    @Override
+    public void changeNick(String newNick, String oldNick) {
+        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:java-level3.db");
+             Statement stmt = conn.createStatement()) {
+            String sqlUpdate = "UPDATE users SET nick = '" + newNick + "' WHERE nick = '" + oldNick + "';";
+            stmt.executeUpdate(sqlUpdate);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

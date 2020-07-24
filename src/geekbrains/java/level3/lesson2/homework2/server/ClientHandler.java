@@ -75,6 +75,14 @@ public class ClientHandler {
                 String nick = tokens[1];
                 String msg = strFromClient.substring(4 + nick.length());
                 myServer.sendMsgToClient(name, nick, msg);
+            } else if (strFromClient.startsWith("/changeNick")) {
+                String[] tokens = strFromClient.split("\\s");
+                String oldNick = name;
+                String newNick = tokens[1];
+                String msg = oldNick + " изменил свой ник на " + newNick + ".";
+                name = newNick;
+                myServer.getAuthService().changeNick(newNick,oldNick);
+                myServer.broadcastMsg("Server", msg);
             } else {
                 myServer.broadcastMsg(name, strFromClient);
             }

@@ -19,7 +19,7 @@ public class Controller implements Initializable {
     TextField msgField, loginField, changeNickField;
 
     @FXML
-    HBox msgPanel, authPanel,changeNickPanel;
+    HBox msgPanel, authPanel, changeNickPanel;
 
     @FXML
     PasswordField passField;
@@ -123,5 +123,9 @@ public class Controller implements Initializable {
 
     public void changeNick() {
         System.out.println("Событие о смене ника!");
+        if (network.sendMsg("/changeNick " + changeNickField.getText())) {
+            changeNickField.clear();
+            msgField.requestFocus();
+        }
     }
 }
