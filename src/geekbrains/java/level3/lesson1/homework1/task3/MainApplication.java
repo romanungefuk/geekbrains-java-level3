@@ -97,5 +97,67 @@ public class MainApplication {
         System.out.println(box1.getBoxArrayList().size());
         System.out.println(box2.getBoxArrayList().size());
         System.out.println();
+
+        //Тестируем метод compare класса Box
+        box1.putFruit(apple1);
+        box1.putFruit(apple2);
+        box2.putFruit(orange1);
+        box2.putFruit(orange2);
+        if ((box1.compare(box1) && box2.compare(box2)) && !box1.compare(box2)) {
+            System.out.println("Тест сравнения коробок пройден.");
+            box1.deleteAll();
+            box2.deleteAll();
+        } else {
+            System.err.println("Тест сравнения коробок не прошел.");
+            box1.deleteAll();
+            box2.deleteAll();
+        }
+        //Удостоверяемся что коробки были опустошены для следующего теста
+        System.out.println("Размер коробок после теста:");
+        System.out.println(box1.getBoxArrayList().size());
+        System.out.println(box2.getBoxArrayList().size());
+        System.out.println();
+
+        //Тестируем метод пересыпания коробок
+        box1.putFruit(apple1);
+        box1.putFruit(apple2);
+        box2.putFruit(orange1);
+        box2.putFruit(orange2);
+        Box box3 = new Box();
+        //Проверяем пересыпание пустой коробки
+        if (!box3.pourOver(box1) && !box3.pourOver(box2)) {
+            System.out.println("Тест пересыпания пустой коробки пройден.");
+        } else {
+            System.err.println("Тест пересыпания пустой коробки не прошел.");
+        }
+        //Добавляем для тестов в коробку 3 яблок
+        box3.putFruit(apple1);
+        box3.putFruit(apple2);
+        System.out.println("В 3-ей коробке " + box3.getBoxArrayList().size() + " фруктов.");
+        //Тестируем пересыпание яблок в коробку с опельсинами
+        if (!box3.pourOver(box2)) {
+            System.out.println("Тест пересыпания яблок в корзину с апельсинами пройден.");
+        } else {
+            System.err.println("Тест пересыпания яблок в корзину с апельсинами не прошел.");
+        }
+        //Тестируем пересыпание яблок в корзину с яблоками
+        System.out.println("Количество яблок в 1-ой корзине перед пересыпанием: " + box1.getBoxArrayList().size() + ".");
+        System.out.println("Количество яблок в 3-ей корзине перед пересыпанием: " + box3.getBoxArrayList().size() + ".");
+        if (box3.pourOver(box1)) {
+            System.out.println("Тест пересыпания яблок в корзину с яблоками пройден.");
+        } else {
+            System.out.println("Тест пересыпания яблок в корзину с яблоками не прошел.");
+        }
+        System.out.println("Количество яблок в 1-ой корзине после пересыпания: " + box1.getBoxArrayList().size() + ".");
+        System.out.println("Количество яблок в 3-ей корзине после пересыпания: " + box3.getBoxArrayList().size() + ".");
+        box1.deleteAll();
+        box2.deleteAll();
+        box3.deleteAll();
+        //Удостоверяемся что коробки были опустошены для следующего теста
+        System.out.println("Размер коробок после теста:");
+        System.out.println(box1.getBoxArrayList().size());
+        System.out.println(box2.getBoxArrayList().size());
+        System.out.println(box3.getBoxArrayList().size());
+        System.out.println();
     }
 }
